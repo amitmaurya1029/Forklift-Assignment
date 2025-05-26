@@ -20,10 +20,29 @@ public class TEST : MonoBehaviour
     public void TriggerThisFun()
     {
         Debug.Log("liver got pulled up :");
-    } 
+    }
 
     public void TriggerThisFun1()
     {
         Debug.Log("liver got pulled down :");
-    } 
+    }
+
+
+    public void EngineStart()
+    {
+        Debug.Log("forklift engine start : ");
+    }
+
+
+    
+    public void ButtonPressed()
+    {
+        Debug.Log("Button got : pressed");
+    }
+
+    
+    public void ButtonReleased()
+    {
+        Debug.Log("Button got : relesed");
+    }
 }

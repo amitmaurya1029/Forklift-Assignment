@@ -16,14 +16,11 @@ public class ForkliftAnimController : MonoBehaviour
     }
     void Start()
     {
-        
-    }
-
-
-    void Update()
-    {
 
     }
+
+
+
 
     public void LiftUp()
     {
@@ -31,10 +28,12 @@ public class ForkliftAnimController : MonoBehaviour
         Debug.Log("lift: up");
     }
 
-    
+
     public void LiftDown()
     {
         animator.SetBool(IsLifting, false);
         Debug.Log("lift: down");
     }
+
+
 }
