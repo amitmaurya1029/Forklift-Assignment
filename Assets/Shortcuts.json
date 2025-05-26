@@ -1,0 +1,61 @@
+{
+    "m_Id": "Default copy (1)",
+    "m_ParentId": "",
+    "m_Entries": [
+        {
+            "identifier": {
+                "path": "Main Menu/Assets/Create/C# Script"
+            },
+            "combinations": [
+                {
+                    "m_KeyCode": 115,
+                    "m_Modifiers": 7
+                }
+            ]
+        },
+        {
+            "identifier": {
+                "path": "Main Menu/Assets/Create/Folder"
+            },
+            "combinations": [
+                {
+                    "m_KeyCode": 102,
+                    "m_Modifiers": 7
+                }
+            ]
+        },
+        {
+            "identifier": {
+                "path": "Hierarchy View/Set as Default Parent"
+            },
+            "combinations": [
+                {
+                    "m_KeyCode": 112,
+                    "m_Modifiers": 7
+                }
+            ]
+        },
+        {
+            "identifier": {
+                "path": "Help/Search/Hierarchy"
+            },
+            "combinations": [
+                {
+                    "m_KeyCode": 104,
+                    "m_Modifiers": 7
+                }
+            ]
+        },
+        {
+            "identifier": {
+                "path": "Main Menu/Assets/Create/Material"
+            },
+            "combinations": [
+                {
+                    "m_KeyCode": 109,
+                    "m_Modifiers": 7
+                }
+            ]
+        }
+    ]
+}
