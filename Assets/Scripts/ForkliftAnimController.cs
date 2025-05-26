@@ -5,14 +5,18 @@ using UnityEngine;
 using UnityEngine.XR.Content.Interaction;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class ForkliftAnimController : XRLever
+public class ForkliftAnimController : MonoBehaviour
 {
-    //[SerializeField] private XRSlider xRLiver;
+    [SerializeField] private Animator animator;
+    private string IsLifting = "IsLifting";
 
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
     void Start()
     {
-        onLeverActivate.AddListener(fun2);
-        onLeverActivate.AddListener(fun);
+        
     }
 
 
@@ -21,14 +25,16 @@ public class ForkliftAnimController : XRLever
 
     }
 
-    private void fun()
+    public void LiftUp()
     {
+        animator.SetBool(IsLifting, true);
         Debug.Log("lift: up");
     }
 
     
-    private void fun2()
+    public void LiftDown()
     {
+        animator.SetBool(IsLifting, false);
         Debug.Log("lift: down");
     }
 }
