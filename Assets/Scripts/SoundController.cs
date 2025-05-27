@@ -9,7 +9,9 @@ public class SoundController : MonoBehaviour
     [SerializeField] private AudioSource forkliftLift;
     [SerializeField] private AudioClip liftUp;
     [SerializeField] private AudioClip liftDown;
-    
+
+    private bool isEngineStart = false;
+
 
     void Start()
     {
@@ -18,9 +20,12 @@ public class SoundController : MonoBehaviour
 
     private void PlayEngineStartSound(object sender, EventHandlerArgs e)
     {
-        if (e.HasEngineStart())
+        isEngineStart = e.HasEngineStart();
+
+        if (isEngineStart)
         {
             forkliftEngine.Play();
+
             Debug.Log("Engine Sound start : active");
         }
         else
@@ -30,17 +35,20 @@ public class SoundController : MonoBehaviour
         }
     }
 
-
     public void PlayLiftUpSound()
     {
-        forkliftLift.clip = liftUp;
-        forkliftLift.Play();
+        PlaySound(liftUp);
     }
 
-    
     public void PlayLiftDownSound()
     {
-        forkliftLift.clip = liftDown;
+        PlaySound(liftDown);
+    }
+
+    private void PlaySound(AudioClip audioClip)
+    {
+        if (!isEngineStart) { return; }
+        forkliftLift.clip = audioClip;
         forkliftLift.Play();
     }
  
