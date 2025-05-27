@@ -8,7 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class ForkliftMovement : MonoBehaviour
 {
     public XRBaseInteractable leverInteractable;
-    public Transform leverTransform;  // Drag the XR Lever's rotating part here
+    public Transform leverTransform;  
     public Transform forklift;
     public float moveSpeed = 3f;
 
@@ -17,28 +17,32 @@ public class ForkliftMovement : MonoBehaviour
     public bool rotateOnZ = true; // true = use Z axis, false = use X
 
     private bool isHeld;
+    private bool isEngineStart = false;
+
+
+      void OnEnable()
+    {
+        StartEngineDial.OnForkliftStart += HasEngineStart;
+        leverInteractable.selectEntered.AddListener(OnLeverGrabbed);
+        leverInteractable.selectExited.AddListener(OnLeverReleased);
+    }
+
+  
 
     void Update()
     {
 
-        if (isHeld)
+        if (isHeld && isEngineStart)
         {
-            // Read lever's local rotation angle (you may need to adjust this depending on axis)
             float rawAngle = rotateOnZ ? leverTransform.localEulerAngles.x : leverTransform.localEulerAngles.x;
-
-            // Fix Unity's 0–360 wraparound to -180–180
             if (rawAngle > 180f) rawAngle -= 360f;
 
-            // Clamp to range
             float clampedAngle = Mathf.Clamp(rawAngle, minAngle, maxAngle);
 
-            // Normalize angle between min and max => returns 0–1
             float t = Mathf.InverseLerp(minAngle, maxAngle, clampedAngle);
 
-            // Convert to -1 to 1 range
             float movementInput = t * 2f - 1f;
 
-            // Apply movement
             Vector3 move = forklift.forward * movementInput * moveSpeed * Time.deltaTime;
             forklift.position += move;
             }
@@ -46,13 +50,11 @@ public class ForkliftMovement : MonoBehaviour
     }
 
 
-     void OnEnable()
-    {
-        leverInteractable.selectEntered.AddListener(OnLeverGrabbed);
-        leverInteractable.selectExited.AddListener(OnLeverReleased);
-    }
 
- 
+    private void HasEngineStart(object sender, EventHandlerArgs eventHandlerArgs)
+    {
+        isEngineStart = eventHandlerArgs.HasEngineStart();
+    }
 
     void OnLeverGrabbed(SelectEnterEventArgs args)
     {

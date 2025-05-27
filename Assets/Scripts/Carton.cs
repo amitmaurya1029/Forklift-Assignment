@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Carton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Transform parent;
+    
+    public void SetParent(Transform parent)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        this.parent = parent;
     }
 }
