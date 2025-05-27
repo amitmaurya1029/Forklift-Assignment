@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,20 +8,37 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ForkliftAnimController : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
+    private Animator animator;
     private string IsLifting = "IsLifting";
+    private bool isEngineStart = false;
 
     void Awake()
     {
         animator = GetComponent<Animator>();
     }
+
     void Start()
     {
-
+        StartEngineDial.OnForkliftStart += HasForkliftStart;
+        LiftLiver.OnleverLift += PlayAnimation;
     }
 
+    private void HasForkliftStart(object sender, EventHandlerArgs e)
+    {
+        isEngineStart = e.HasEngineStart();
+    }
 
-
+    private void PlayAnimation(bool liftState)
+    {
+        if (isEngineStart)
+        {
+            if (liftState)
+                LiftDown();
+            else
+                LiftUp();
+        }
+  
+    }
 
     public void LiftUp()
     {
@@ -34,6 +52,8 @@ public class ForkliftAnimController : MonoBehaviour
         animator.SetBool(IsLifting, false);
         Debug.Log("lift: down");
     }
+
+    
 
 
 }

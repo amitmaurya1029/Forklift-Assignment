@@ -16,6 +16,7 @@ public class SoundController : MonoBehaviour
     void Start()
     {
         StartEngineDial.OnForkliftStart += PlayEngineStartSound;
+        LiftLiver.OnleverLift += PlayeLiftUpAndDownSound;
     }
 
     private void PlayEngineStartSound(object sender, EventHandlerArgs e)
@@ -35,15 +36,23 @@ public class SoundController : MonoBehaviour
         }
     }
 
-    public void PlayLiftUpSound()
+    private void PlayeLiftUpAndDownSound(bool liftState)
     {
-        PlaySound(liftUp);
+        if (liftState)
+            PlaySound(liftDown);
+        else
+            PlaySound(liftUp);
     }
 
-    public void PlayLiftDownSound()
-    {
-        PlaySound(liftDown);
-    }
+    // public void PlayLiftUpSound()
+    // {
+    //     PlaySound(liftUp);
+    // }
+
+    // public void PlayLiftDownSound()
+    // {
+    //     PlaySound(liftDown);
+    // }
 
     private void PlaySound(AudioClip audioClip)
     {
