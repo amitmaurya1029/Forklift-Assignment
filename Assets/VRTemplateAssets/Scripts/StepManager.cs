@@ -33,7 +33,7 @@ namespace Unity.VRTemplate
             if (m_CurrentStepIndex == m_StepList.Count - 1)
             {
                 Debug.Log("Sceneload next : ");
-                SceneManager.LoadScene("MainScene");
+                FindObjectOfType<SceneFadeInOut>().FadeToScene("MainScene");
             }
             m_StepList[m_CurrentStepIndex].stepObject.SetActive(false);
             m_CurrentStepIndex = (m_CurrentStepIndex + 1) % m_StepList.Count;
